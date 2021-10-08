@@ -38,7 +38,7 @@
         android:ems="10"
         android:hint="JohnTheMoneyMaker"
         android:inputType="textPersonName"
-        android:textAlignment="textStart"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/goNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

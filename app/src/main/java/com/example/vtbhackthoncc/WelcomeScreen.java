@@ -37,7 +37,6 @@ public class WelcomeScreen extends AppCompatActivity {
                     if (step == 0) {
                         invitationToAction.setText(R.string.input_age);
                         inputNameAge.setText("");
-                        inputNameAge.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                         inputNameAge.setHint(R.string.hint_age);
                         goNext.setText(R.string.done);
                         step++;
