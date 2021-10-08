@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "89594242012",
+    "firebase_url": "https://vtb-hackathon-cc-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "vtb-hackathon-cc",
+    "storage_bucket": "vtb-hackathon-cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89594242012:android:e10270cc6b72c83ce22519",
+        "android_client_info": {
+          "package_name": "com.example.vtbhackthoncc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89594242012-er59om3l6qqkqm740ojot16tmf7jfcig.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vtbhackthoncc",
+            "certificate_hash": "099d333e3d17983e7a4f6dcadc59d6d191cbf28f"
+          }
+        },
+        {
+          "client_id": "89594242012-4u0d31ob2obea2u6195vqmsi5a13pce6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvFxrqtAlDTQrV2ZG_2fz370CkgLkYiUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89594242012-4u0d31ob2obea2u6195vqmsi5a13pce6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
