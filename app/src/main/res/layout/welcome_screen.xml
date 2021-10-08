@@ -32,12 +32,12 @@
 
     <EditText
         android:id="@+id/inputNameAge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="209dp"
+        android:layout_height="54dp"
         android:layout_marginBottom="124dp"
         android:ems="10"
+        android:hint="JohnTheMoneyMaker"
         android:inputType="textPersonName"
-        android:text="JohnTheMoneyMaker"
         android:textAlignment="textStart"
         app:layout_constraintBottom_toTopOf="@+id/goNext"
         app:layout_constraintEnd_toEndOf="parent"
