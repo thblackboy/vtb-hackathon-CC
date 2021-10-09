@@ -2,16 +2,10 @@ package com.example.vtbhackthoncc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
 
 public class MainActivity extends AppCompatActivity {
     private UserGameData playerData = new UserGameData();
@@ -19,8 +13,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        playerData = UserGameData.readFromFile(this);
         setContentView(R.layout.activity_main);
+        if ((UserGameData.readFromFile(this) != null)) {
+            playerData.setNickname(getIntent().getStringExtra("nickname"));
+            playerData.setDateOfBirth(getIntent().getStringExtra("dateOfBirth"));
+            playerData.setRegistrationStatus(getIntent().getBooleanExtra("registrationStatus", false));
+            if(playerData.isRegistrationStatus()) playerData.saveToFile(this);
+            playerData = UserGameData.readFromFile(this);
+            if(!playerData.isRegistrationStatus()){
+                Intent intent = new Intent(MainActivity.this, WelcomeScreen.class);
+                startActivity(intent);
+            }
+        } else {
+            playerData.saveToFile(this);
+            Intent intent = new Intent(MainActivity.this, WelcomeScreen.class);
+            startActivity(intent);
+        }
     }
     @Override
     protected void onPause(){
@@ -30,6 +38,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        playerData = UserGameData.readFromFile(this);
+        if ((UserGameData.readFromFile(this) != null)) {
+            playerData = UserGameData.readFromFile(this);
+        }
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        playerData.saveToFile(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        playerData.saveToFile(this);
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

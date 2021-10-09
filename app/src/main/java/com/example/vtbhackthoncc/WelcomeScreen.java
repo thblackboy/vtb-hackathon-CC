@@ -17,6 +17,7 @@ public class WelcomeScreen extends AppCompatActivity {
     private TextView invitationToAction;
     private int step = 0;
     private UserInfo user = new UserInfo();
+    private boolean registrationStatus = false;
 
 
     @Override
@@ -27,7 +28,10 @@ public class WelcomeScreen extends AppCompatActivity {
         goBack = findViewById(R.id.goBack);
         inputNameAge = findViewById(R.id.inputNameAge);
         invitationToAction = findViewById(R.id.invitationToAction);
-
+        /*if ((UserGameData.readFromFile(this) != null)) {
+            Intent intent = new Intent(WelcomeScreen.this, MainActivity.class);
+            startActivity(intent);
+        }*/
 
         goNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +50,11 @@ public class WelcomeScreen extends AppCompatActivity {
                         goBack.setEnabled(true);
                     } else {
                         user.setDateOfBirth(inputNameAge.getText().toString());
+                        registrationStatus = true;
                         Intent intent = new Intent(WelcomeScreen.this, MainActivity.class);
+                        intent.putExtra("nickname", user.getNickname());
+                        intent.putExtra("dateOfBirth", user.getDateOfBirth());
+                        intent.putExtra("registrationStatus", registrationStatus);
                         startActivity(intent);
                     }
                 }
