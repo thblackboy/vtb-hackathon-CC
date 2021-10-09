@@ -6,4 +6,5 @@
     <string name="hint_name">JohnTheMoneyMaker</string>
     <string name="hint_age">11.06.2000</string>
     <string name="done">Завершить</string>
+    <string name="next">Далее</string>
 </resources>

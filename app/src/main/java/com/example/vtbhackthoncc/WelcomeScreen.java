@@ -14,9 +14,11 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class WelcomeScreen extends AppCompatActivity {
     private Button goNext;
+    private Button goBack;
     private EditText inputNameAge;
     private TextView invitationToAction;
     private int step = 0;
+    private UserInfo user = new UserInfo();
 
 
     @Override
@@ -24,8 +26,10 @@ public class WelcomeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_screen);
         goNext = findViewById(R.id.goNext);
+        goBack = findViewById(R.id.goBack);
         inputNameAge = findViewById(R.id.inputNameAge);
         invitationToAction = findViewById(R.id.invitationToAction);
+
 
         goNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,15 +40,29 @@ public class WelcomeScreen extends AppCompatActivity {
                     //name/age_getter
                     if (step == 0) {
                         invitationToAction.setText(R.string.input_age);
+                        user.setNickname(inputNameAge.getText().toString());
                         inputNameAge.setText("");
                         inputNameAge.setHint(R.string.hint_age);
                         goNext.setText(R.string.done);
                         step++;
+                        goBack.setEnabled(true);
                     } else {
+                        user.setDateOfBirth(inputNameAge.getText().toString());
                         Intent intent = new Intent(WelcomeScreen.this, MainActivity.class);
                         startActivity(intent);
                     }
                 }
+            }
+        });
+        goBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                invitationToAction.setText(R.string.input_name);
+                inputNameAge.setText("");
+                inputNameAge.setHint(R.string.hint_name);
+                goNext.setText(R.string.next);
+                step--;
+                if (step == 0) goBack.setEnabled(false);
             }
         });
     }
