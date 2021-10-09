@@ -2,6 +2,7 @@ package com.example.vtbhackthoncc;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,6 +46,7 @@ public class WelcomeScreen extends AppCompatActivity {
                         user.setNickname(inputNameAge.getText().toString());
                         inputNameAge.setText("");
                         inputNameAge.setHint(R.string.hint_age);
+                        inputNameAge.setInputType(InputType.TYPE_CLASS_DATETIME | InputType.TYPE_DATETIME_VARIATION_DATE);
                         goNext.setText(R.string.done);
                         step++;
                         goBack.setEnabled(true);
