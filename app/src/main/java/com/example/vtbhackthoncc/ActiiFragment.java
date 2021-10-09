@@ -7,6 +7,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.example.vtbhackthoncc.adapter.ActiiAdapter;
+import com.example.vtbhackthoncc.classes.Actii;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +30,11 @@ public class ActiiFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    List<Actii> list= loadList();
+
+
+
 
     public ActiiFragment() {
         // Required empty public constructor
@@ -53,12 +65,30 @@ public class ActiiFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_actii, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_actii, container, false);
+
+        ActiiAdapter adapter = new ActiiAdapter(this,list);
+        ListView listView = (ListView) rootView.findViewById(R.id.listView);
+        listView.setAdapter(adapter);
+
+        return rootView;
+
+
+    }
+    public List loadList(){
+        List<Actii> list = new ArrayList<>();
+        list.add(new Actii("pig",10000,"all.png"));
+        list.add(new Actii("cow",1525,"all.png"));
+        list.add(new Actii("mil",9778,"all.png"));
+        list.add(new Actii("dog",33,"all.png"));
+        return  list;
     }
 }

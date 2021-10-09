@@ -1,4 +1,4 @@
-package com.example.vtbhackthoncc;
+package com.example.vtbhackthoncc.classes;
 
 public class News {
     private String head;
