@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/prog/hack/vtb-hackathon-CC/app/src/main/res/layout/activity_test_database.xml" value="0.33" />
+        <entry key="..\:/prog/hack/vtb-hackathon-CC/app/src/main/res/layout/activity_users_top.xml" value="0.3625" />
+        <entry key="..\:/prog/hack/vtb-hackathon-CC/app/src/main/res/layout/fragment_user_top.xml" value="0.33" />
+        <entry key="..\:/prog/hack/vtb-hackathon-CC/app/src/main/res/layout/user_top_item.xml" value="0.5" />
+        <entry key="..\:/prog/hack/vtb-hackathon-CC/app/src/main/res/layout/users_top.xml" value="0.5" />
       </map>
     </option>
   </component>

@@ -11,8 +11,6 @@ public class User {
     public User(String nickname, Long skill, String phoneNumber, String email) {
         this.nickname = nickname;
         this.skill = skill;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
     }
 
     public String getNickname() {
@@ -23,11 +21,11 @@ public class User {
         return skill;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public String getEmail() {
-        return email;
+    public void setSkill(Long skill) {
+        this.skill = skill;
     }
 }

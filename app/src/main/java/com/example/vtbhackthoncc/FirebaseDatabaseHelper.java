@@ -1,10 +1,10 @@
 package com.example.vtbhackthoncc;
 
-import android.provider.ContactsContract;
+import android.content.Context;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -12,10 +12,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 
 public class FirebaseDatabaseHelper {
-    public User user;
-
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private ArrayList<User> users = new ArrayList<>();
@@ -25,33 +27,78 @@ public class FirebaseDatabaseHelper {
         databaseReference = firebaseDatabase.getReference("User");
     }
 
-    public void addUser(User user) {
-        String key = databaseReference.push().getKey();
-        databaseReference.child(key).setValue(user);
-    }
-
-    //эта штука не работает user становаится null
-    public User getUser(String username) {
+    public void addUser(User ourUser, Context context) {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User getedUser;
-                for (DataSnapshot node : dataSnapshot.getChildren()) {
-                    getedUser = node.getValue(User.class);
-                    if (getedUser.getNickname().equals(username)) {
-                        user = getedUser;
-                        break;
+                for (DataSnapshot node : snapshot.getChildren()) {
+                    User user = node.getValue(User.class);
+                    if (user.getNickname().equals(ourUser.getNickname())){
+                        Toast.makeText(context, "Имя пользователя занято.", Toast.LENGTH_SHORT);
+                    }
+                    else {
+                        String key = databaseReference.push().getKey();
+                        databaseReference.child(key).setValue(user);
                     }
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         });
+    }
+
+    public void updateUser(User ourUser, Context context) {
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                users.clear();
+                for (DataSnapshot node : snapshot.getChildren()) {
+                    User user = node.getValue(User.class);
+                    if (user.getNickname().equals(ourUser.getNickname())){
+                        databaseReference.child(node.getKey()).setValue(user);
+                    }
+                    else {
+                        Toast.makeText(context, "Ошибка изменения данных.", Toast.LENGTH_SHORT);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+    }
 
 
-        return user;
+    public void makeUsersTop(UsersTopAdapter usersTopAdapter) {
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                users.clear();
+                for (DataSnapshot node : snapshot.getChildren()) {
+                    User user = node.getValue(User.class);
+                    users.add(user);
+                }
+
+                Collections.sort(users, new Comparator<User>() {
+                    @Override
+                    public int compare(User o1, User o2) {
+                        if (o1.getSkill() > o2.getSkill()) {
+                            return -1;
+                        }
+                        else if (o1.getSkill() < o2.getSkill()) {
+                            return 1;
+                        }
+                        return 0;
+                    }
+                });
+                if (usersTopAdapter != null) {
+                    usersTopAdapter.setItems(users);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
     }
 }
