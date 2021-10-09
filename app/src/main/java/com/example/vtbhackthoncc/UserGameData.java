@@ -13,6 +13,7 @@ import java.util.HashMap;
 public class UserGameData implements Serializable {
     private HashMap<String, Integer> stockName_Amount = new HashMap<>();
     private int wallet;
+    private long skill;
     private boolean registrationStatus;
     public static String fileName = "UserGameData.data";
     private String nickname;
@@ -25,6 +26,7 @@ public class UserGameData implements Serializable {
         sentToInvestStatus = false;
         registrationStatus = false;
         wallet = 1000000;
+        skill = 1000;
         stockName_Amount.put("Pig", 0);
         stockName_Amount.put("Boar", 0);
         stockName_Amount.put("Cat", 0);
