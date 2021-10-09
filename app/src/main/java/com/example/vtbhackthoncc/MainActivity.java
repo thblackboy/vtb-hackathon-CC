@@ -27,4 +27,9 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         playerData.saveToFile(this);
     }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        playerData = UserGameData.readFromFile(this);
+    }
 }
