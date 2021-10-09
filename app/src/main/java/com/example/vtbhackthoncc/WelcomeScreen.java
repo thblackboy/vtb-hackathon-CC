@@ -10,8 +10,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.textfield.TextInputEditText;
-
 public class WelcomeScreen extends AppCompatActivity {
     private Button goNext;
     private Button goBack;
