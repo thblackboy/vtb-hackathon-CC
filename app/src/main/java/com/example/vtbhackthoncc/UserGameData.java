@@ -110,6 +110,14 @@ public class UserGameData implements Serializable {
         return  sentToInvestStatus;
     }
 
+    public void setSkill(long skill) {
+        this.skill = skill;
+    }
+
+    public long getSkill() {
+        return skill;
+    }
+
     public void saveToFile(Context context) {
         try {
             FileOutputStream fileOutputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE);
