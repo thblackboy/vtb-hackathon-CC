@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
 public class UserGameData {
-    private HashMap<String, Integer> stockName_Amount;
+    private HashMap<String, Integer> stockName_Amount = new HashMap<>();
     private int wallet;
     public static String fileName = "UserGameData.data";
 
