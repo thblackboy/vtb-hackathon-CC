@@ -14,7 +14,7 @@ public class TestDatabase extends AppCompatActivity {
         setContentView(R.layout.activity_test_database);
     }
 
-    public void push(View view) {
+   /* public void push(View view) {
         String nickname = ((EditText) findViewById(R.id.nickname)).getText().toString();
         Long skill = Long.parseLong(((EditText) findViewById(R.id.skill)).getText().toString());
         String phonenumber = ((EditText) findViewById(R.id.phonenumber)).getText().toString();
@@ -24,5 +24,5 @@ public class TestDatabase extends AppCompatActivity {
 
         FirebaseDatabaseHelper dbHelper = new FirebaseDatabaseHelper();
         dbHelper.addUser(user, getApplicationContext());
-    }
+    }*/
 }

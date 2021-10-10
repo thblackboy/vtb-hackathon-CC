@@ -40,19 +40,26 @@ public class WelcomeScreen extends AppCompatActivity {
                 if(inputNameAge.getText().toString().trim().equals(""))
                     Toast.makeText(WelcomeScreen.this, R.string.no_user_input, Toast.LENGTH_SHORT).show();
                 else{
+                    FirebaseDatabaseHelper helper = new FirebaseDatabaseHelper();
                     //name/age_getter
                     if (step == 0) {
                         invitationToAction.setText(R.string.input_age);
-                        user.setNickname(inputNameAge.getText().toString());
-                        inputNameAge.setText("");
-                        inputNameAge.setHint(R.string.hint_age);
-                        inputNameAge.setInputType(InputType.TYPE_CLASS_DATETIME | InputType.TYPE_DATETIME_VARIATION_DATE);
-                        goNext.setText(R.string.done);
-                        step++;
-                        goBack.setEnabled(true);
+
+                        if (helper.addUser(new User(inputNameAge.getText().toString(), (long) 1000, user.getDateOfBirth()), getApplicationContext())) {
+                            user.setNickname(inputNameAge.getText().toString());
+                            inputNameAge.setText("");
+                            inputNameAge.setHint(R.string.hint_age);
+                            inputNameAge.setInputType(InputType.TYPE_CLASS_DATETIME | InputType.TYPE_DATETIME_VARIATION_DATE);
+                            goNext.setText(R.string.done);
+                            step++;
+                            goBack.setEnabled(true);
+                        }
                     } else {
                         user.setDateOfBirth(inputNameAge.getText().toString());
                         registrationStatus = true;
+
+                        helper.updateUser(new User(user.getNickname(), (long) 1000, user.getDateOfBirth()), getApplicationContext());
+
                         Intent intent = new Intent(WelcomeScreen.this, MainActivity.class);
                         intent.putExtra("nickname", user.getNickname());
                         intent.putExtra("dateOfBirth", user.getDateOfBirth());
