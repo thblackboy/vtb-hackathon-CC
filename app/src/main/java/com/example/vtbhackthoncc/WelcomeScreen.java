@@ -44,8 +44,7 @@ public class WelcomeScreen extends AppCompatActivity {
                     //name/age_getter
                     if (step == 0) {
                         invitationToAction.setText(R.string.input_age);
-
-                        if (helper.addUser(new User(inputNameAge.getText().toString(), (long) 1000, user.getDateOfBirth()), getApplicationContext())) {
+                            helper.addUser(new User(inputNameAge.getText().toString(), (long) 1000, user.getDateOfBirth()), getApplicationContext());
                             user.setNickname(inputNameAge.getText().toString());
                             inputNameAge.setText("");
                             inputNameAge.setHint(R.string.hint_age);
@@ -53,7 +52,6 @@ public class WelcomeScreen extends AppCompatActivity {
                             goNext.setText(R.string.done);
                             step++;
                             goBack.setEnabled(true);
-                        }
                     } else {
                         user.setDateOfBirth(inputNameAge.getText().toString());
                         registrationStatus = true;

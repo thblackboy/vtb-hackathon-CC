@@ -12,94 +12,68 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.BufferedReader;
-import java.io.File;
+
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 
 public class FirebaseDatabaseHelper {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private ArrayList<User> users = new ArrayList<>();
+    private boolean nameTaken = false;
 
     public FirebaseDatabaseHelper() {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("User");
     }
 
-    public boolean addUser(User ourUser, Context context) {
-        databaseReference.addValueEventListener(new ValueEventListener() {
+    public void addUser(User ourUser, Context context) {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                byte nameTaken = 47;
                 User user = new User();
+                boolean nameTaken = false;
                 for (DataSnapshot node : snapshot.getChildren()) {
                     user = node.getValue(User.class);
                     if (user.getNickname().equals(ourUser.getNickname())){
                         Toast.makeText(context, "Имя пользователя занято.", Toast.LENGTH_SHORT);
-                        nameTaken = 45;
+                        nameTaken = true;
                         break;
                     }
                 }
-                if (nameTaken == 47) {
-                    String key = databaseReference.push().getKey();
-                    databaseReference.child(key).setValue(ourUser);
-                }
-
-                try {
-                    String filename = "kek.data";
-                    FileOutputStream fos = context.openFileOutput(filename, Context.MODE_PRIVATE);
-                    fos.write(nameTaken);
-                    fos.close();
-                    return;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                    if(!nameTaken) {
+                        String key = databaseReference.push().getKey();
+                        databaseReference.child(key).setValue(ourUser);
+                    }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
         });
-        int nameTaken = 46;
-        String filename = "kek.data";
-        FileInputStream fin = null;
-        try {
-            fin = context.openFileInput(filename);
-            byte[] bytes = new byte[fin.available()];
-            fin.read(bytes);
-            nameTaken = bytes[0] - 45;
-            fin.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("nameTaken " + nameTaken);
-        return nameTaken != 1;
     }
 
     public void updateUser(User ourUser, Context context) {
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 users.clear();
+                String key = "";
                 for (DataSnapshot node : snapshot.getChildren()) {
                     User user = node.getValue(User.class);
                     if (user.getNickname().equals(ourUser.getNickname())){
-                        databaseReference.child(node.getKey()).setValue(user);
+                        key = node.getKey();
+                        databaseReference.child(key).removeValue();
+                        break;
                     }
                     else {
                         Toast.makeText(context, "Ошибка изменения данных.", Toast.LENGTH_SHORT);
                     }
                 }
+                databaseReference.child(key).setValue(ourUser);
             }
 
             @Override

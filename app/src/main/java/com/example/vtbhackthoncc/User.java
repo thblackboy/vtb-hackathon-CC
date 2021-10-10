@@ -3,7 +3,7 @@ package com.example.vtbhackthoncc;
 public class User {
     private String nickname;
     private Long skill;
-    private  String birthday;
+    private String birthday;
 
     public User() {}
 
