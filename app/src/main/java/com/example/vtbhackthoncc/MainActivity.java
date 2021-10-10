@@ -22,10 +22,11 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, WelcomeScreen.class);
                 startActivity(intent);
             }
-        } else {
-            playerData.saveToFile(this);
-            Intent intent = new Intent(MainActivity.this, WelcomeScreen.class);
-            startActivity(intent);
+            else {
+                playerData.saveToFile(this);
+                Intent intent = new Intent(MainActivity.this, WelcomeScreen.class);
+                startActivity(intent);
+            }
         }
         //after this add code all info is in playerData
     }

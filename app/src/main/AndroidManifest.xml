@@ -13,9 +13,6 @@
             android:name=".UsersTop"
             android:exported="true" />
         <activity
-            android:name=".TestDatabase"
-            android:exported="true" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

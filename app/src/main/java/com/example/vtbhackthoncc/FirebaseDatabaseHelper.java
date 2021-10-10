@@ -32,6 +32,11 @@ public class FirebaseDatabaseHelper {
     }
 
     public void addUser(User ourUser, Context context) {
+        String key = databaseReference.push().getKey();
+        databaseReference.child(key).setValue(ourUser);
+    }
+
+    /*public void addUser(User ourUser, Context context) {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -45,35 +50,34 @@ public class FirebaseDatabaseHelper {
                         break;
                     }
                 }
-                    if(!nameTaken) {
-                        String key = databaseReference.push().getKey();
-                        databaseReference.child(key).setValue(ourUser);
-                    }
+                if(!nameTaken) {
+                    String key = databaseReference.push().getKey();
+                    databaseReference.child(key).setValue(ourUser);
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
         });
-    }
+    }*/
 
     public void updateUser(User ourUser, Context context) {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                users.clear();
                 String key = "";
                 for (DataSnapshot node : snapshot.getChildren()) {
                     User user = node.getValue(User.class);
                     if (user.getNickname().equals(ourUser.getNickname())){
                         key = node.getKey();
                         databaseReference.child(key).removeValue();
+                        databaseReference.child(key).setValue(ourUser);
                         break;
                     }
                     else {
                         Toast.makeText(context, "Ошибка изменения данных.", Toast.LENGTH_SHORT);
                     }
                 }
-                databaseReference.child(key).setValue(ourUser);
             }
 
             @Override
