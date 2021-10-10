@@ -29,10 +29,6 @@ public class WelcomeScreen extends AppCompatActivity {
         goBack = findViewById(R.id.goBack);
         inputNameAge = findViewById(R.id.inputNameAge);
         invitationToAction = findViewById(R.id.invitationToAction);
-        /*if ((UserGameData.readFromFile(this) != null)) {
-            Intent intent = new Intent(WelcomeScreen.this, MainActivity.class);
-            startActivity(intent);
-        }*/
 
         goNext.setOnClickListener(new View.OnClickListener() {
             @Override
