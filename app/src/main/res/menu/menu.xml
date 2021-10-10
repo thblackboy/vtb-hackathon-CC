@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/depend"
+        android:id="@+id/actii"
         android:title="Зависимость"/>
     <item
-        android:id="@+id/actii"
+        android:id="@+id/buyact"
         android:title="Акции"/>
     <item
         android:id="@+id/allnews"

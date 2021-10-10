@@ -6,21 +6,79 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/depImg4"
+        android:alpha="0"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/redborder"
+        app:layout_constraintStart_toEndOf="@+id/depImg3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/borders"
+        android:scaleType="centerInside"
+        android:padding="7dp"/>
+
+    <ImageView
         android:id="@+id/actImg"
         android:layout_width="70dp"
+
         android:layout_height="70dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/borders" />
+        android:background="@drawable/borders"
+        android:scaleType="centerInside"/>
+
+    <ImageView
+        android:id="@+id/depImg1"
+        android:alpha="0"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/greenborder"
+        android:padding="7dp"
+        app:layout_constraintStart_toEndOf="@+id/actName"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/borders"
+        android:scaleType="centerInside"/>
+
+    <ImageView
+        android:id="@+id/depImg2"
+        android:alpha="0"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/greenborder"
+        app:layout_constraintStart_toEndOf="@+id/depImg1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/borders"
+        android:scaleType="centerInside"
+        android:padding="7dp"/>
+
+    <ImageView
+        android:id="@+id/depImg3"
+        android:alpha="0"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/redborder"
+        app:layout_constraintStart_toEndOf="@+id/depImg2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/borders"
+        android:scaleType="centerInside"
+        android:padding="7dp"/>
 
     <TextView
         android:id="@+id/actName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:text="Name"
         android:textSize="28sp"
         app:layout_constraintStart_toEndOf="@+id/actImg"
@@ -30,7 +88,7 @@
         android:id="@+id/actprice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:text="price"
         android:textSize="18sp"

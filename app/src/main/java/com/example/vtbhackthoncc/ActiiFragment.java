@@ -31,7 +31,7 @@ public class ActiiFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    List<Actii> list= loadList();
+    public static List<Actii> actiiList= loadList();
 
 
 
@@ -75,7 +75,7 @@ public class ActiiFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_actii, container, false);
 
-        ActiiAdapter adapter = new ActiiAdapter(this,list);
+        ActiiAdapter adapter = new ActiiAdapter(this,actiiList);
         ListView listView = (ListView) rootView.findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
@@ -83,12 +83,31 @@ public class ActiiFragment extends Fragment {
 
 
     }
-    public List loadList(){
+    public static List loadList(){
         List<Actii> list = new ArrayList<>();
-        list.add(new Actii("pig",10000,"all.png"));
-        list.add(new Actii("cow",1525,"all.png"));
-        list.add(new Actii("mil",9778,"all.png"));
-        list.add(new Actii("dog",33,"all.png"));
+        list.add(new Actii("pig",10000,R.drawable.pig));
+        list.add(new Actii("cow",1525,R.drawable.cow));
+        list.add(new Actii("mil",9778,R.drawable.camel));
+        list.add(new Actii("dog",33,R.drawable.dog));
+        list.get(0).addDepAct(list.get(1));
+        list.get(0).addDepAct(list.get(1));
+        list.get(0).addDepAct(list.get(2));
+        list.get(0).addDepAct(list.get(3));
+
+        list.get(1).addDepAct(list.get(0));
+        list.get(1).addDepAct(list.get(3));
+        list.get(1).addDepAct(list.get(2));
+        list.get(1).addDepAct(list.get(1));
+
+        list.get(2).addDepAct(list.get(1));
+        list.get(2).addDepAct(list.get(1));
+        list.get(2).addDepAct(list.get(0));
+        list.get(2).addDepAct(list.get(3));
+
+        list.get(3).addDepAct(list.get(0));
+        list.get(3).addDepAct(list.get(1));
+        list.get(3).addDepAct(list.get(2));
+        list.get(3).addDepAct(list.get(0));
         return  list;
     }
 }
