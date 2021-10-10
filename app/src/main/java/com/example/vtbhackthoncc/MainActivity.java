@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, WelcomeScreen.class);
             startActivity(intent);
         }
+        //after this add code all info is in playerData
     }
     @Override
     protected void onPause(){
