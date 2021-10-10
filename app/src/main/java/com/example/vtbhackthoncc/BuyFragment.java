@@ -7,6 +7,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.example.vtbhackthoncc.adapter.ActiiAdapter;
+import com.example.vtbhackthoncc.adapter.BuyAdapter;
+import com.example.vtbhackthoncc.classes.Actii;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +67,18 @@ public class BuyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_buy, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_buy, container, false);
+
+        BuyAdapter adapter = new BuyAdapter(this,ActiiFragment.actiiList);
+        ListView listView = (ListView) rootView.findViewById(R.id.buyActList);
+        listView.setAdapter(adapter);
+
+        return rootView;
     }
+
+
+
+
+
+
 }

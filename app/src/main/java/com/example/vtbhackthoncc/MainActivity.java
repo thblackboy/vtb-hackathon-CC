@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.vtbhackthoncc.classes.News;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -53,8 +54,9 @@ public class MainActivity extends AppCompatActivity {
             };
 
 
-    public void changePrice(View view){
-        ActiiFragment.actiiList.get(0).setPrice(15);
+
+    public void clickNext(View view){
+        NewsFragment.newsList.add(new News("AAAAA","heloooooooo","1",0.15));
     }
    /* public void clickbutton(View view){
         Button button = (Button) view;

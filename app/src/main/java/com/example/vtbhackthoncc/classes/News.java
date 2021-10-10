@@ -4,24 +4,31 @@ public class News {
     private String head;
     private String mess;
     private String buy;
-    private int lv;
+    private Actii action;
+    private double val;
     private int company;
-    public News(String head,String mess,String buy){
+    public News(String head,String mess,String buy,double val){
         this.head=head;
         this.mess=mess;
         this.buy=buy;
- //       this.lv=lv;
+        if(buy.equals(1))
+            this.val=val;
+        else
+            this.val=-val;
+    //    this.action=action;
  //       this.company=company;
     }
-    String getHead(){
+    public String getHead(){
         return head;
     }
-    String getMess(){
+    public String getMess(){
         return mess;
     }
-    String getBuy(){
+    public String getBuy(){
         return buy;
     }
+    public double getVal(){return val;}
+
 
 
 }

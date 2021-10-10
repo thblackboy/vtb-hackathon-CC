@@ -20,7 +20,7 @@
         android:padding="7dp"/>
 
     <ImageView
-        android:id="@+id/actImg"
+        android:id="@+id/buyactImg"
         android:layout_width="70dp"
 
         android:layout_height="70dp"
@@ -40,7 +40,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/greenborder"
         android:padding="7dp"
-        app:layout_constraintStart_toEndOf="@+id/actName"
+        app:layout_constraintStart_toEndOf="@+id/buyactName"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/borders"
         android:scaleType="centerInside"/>
@@ -74,24 +74,24 @@
         android:padding="7dp"/>
 
     <TextView
-        android:id="@+id/actName"
+        android:id="@+id/buyactName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:text="Name"
         android:textSize="28sp"
-        app:layout_constraintStart_toEndOf="@+id/actImg"
+        app:layout_constraintStart_toEndOf="@+id/buyactImg"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/actprice"
+        android:id="@+id/buyactprice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:text="price"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/actImg"
-        app:layout_constraintTop_toBottomOf="@+id/actName" />
+        app:layout_constraintStart_toEndOf="@+id/buyactImg"
+        app:layout_constraintTop_toBottomOf="@+id/buyactName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

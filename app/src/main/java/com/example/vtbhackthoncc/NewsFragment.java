@@ -7,6 +7,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.example.vtbhackthoncc.adapter.BuyAdapter;
+import com.example.vtbhackthoncc.adapter.NewsAdapter;
+import com.example.vtbhackthoncc.classes.News;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +22,9 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class NewsFragment extends Fragment {
+
+    public static List<News> newsList;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,8 +69,23 @@ public class NewsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if (newsList==null)
+            newsList=loadlist();
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_news, container, false);
+
+        View rootView =inflater.inflate(R.layout.fragment_news, container, false);
+        NewsAdapter adapter = new NewsAdapter(this,newsList);
+        ListView listView = (ListView) rootView.findViewById(R.id.listNews);
+        listView.setAdapter(adapter);
+
+        return rootView;
+
+    }
+
+    public List<News> loadlist(){
+        List<News> list =  new ArrayList<>();
+        list.add(new News ("Head","heloooooooo","1",0.15));
+        return list;
     }
 
 

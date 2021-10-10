@@ -108,6 +108,9 @@ public class ActiiFragment extends Fragment {
         list.get(3).addDepAct(list.get(1));
         list.get(3).addDepAct(list.get(2));
         list.get(3).addDepAct(list.get(0));
+        for(Actii act:list){
+            Data.actions.put(act.getName(),act);
+        }
         return  list;
     }
 }
